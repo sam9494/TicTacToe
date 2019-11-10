@@ -39,14 +39,25 @@ namespace TicTacToe
         [Test]
         public void testWinByRowConditions()
         {
-            Game game = new Game("---XXX---");
-            Assert.AreEqual('X', game.Winner());
+            //var game = new Game("---XXX---");
+            //Assert.AreEqual('X', game.Winner());
 
-            game = new Game("------OOO");
-            Assert.AreEqual('O', game.Winner());
+            //game = new Game("------OOO");
+            //Assert.AreEqual('O', game.Winner());
 
-            game = new Game("YYY------");
-            Assert.AreEqual('Y', game.Winner());
+            //game = new Game("YYY------");
+            //Assert.AreEqual('Y', game.Winner());
+            GameWinnerShouldBe("---XXX---", 'X');
+            GameWinnerShouldBe("------OOO", 'O');
+            GameWinnerShouldBe("YYY------", 'Y');
+
+        }
+
+        private void GameWinnerShouldBe(string board, char expectWinner)
+        {
+            var game = new Game(board);
+            var actual = game.Winner();
+            Assert.AreEqual(expectWinner,actual);
         }
     }
 }

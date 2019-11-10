@@ -25,13 +25,11 @@ namespace TicTacToe
             var defaultMove = -1;
             for (var i = 0; i < 9; i++)
             {
-                if (board[i] == '-')
-                {
-                    if(defaultMove ==-1) defaultMove = i;
-                    var game = Play(i, player);
-                    if (game.Winner() == player)
-                        return i;
-                }
+                if (board[i] != '-') continue;
+                if(defaultMove ==-1) defaultMove = i;
+                var game = Play(i, player);
+                if (game.Winner() == player)
+                    return i;
             }
 
             return defaultMove;
