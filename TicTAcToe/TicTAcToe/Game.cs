@@ -54,12 +54,11 @@ namespace TicTacToe
 
         public char Winner()
         {
-            for (var i = 0; i < 9; i += 3)
+           
+            for (var boardPosition = 0; boardPosition < 9; boardPosition += 3)
             {
-                if (board[i] != '-' && board[i] == board[i + 1] && board[i] == board[i + 2])
-                {
-                    return board[i];
-                }
+                if (WinOrNot(boardPosition))
+                    return board[boardPosition];
             }
             return '-';
 
@@ -77,6 +76,11 @@ namespace TicTacToe
 
 
 
+        }
+
+        private bool WinOrNot(int boardPosition)
+        {
+            return board[boardPosition] != '-' && board[boardPosition] == board[boardPosition + 1] && board[boardPosition] == board[boardPosition + 2];
         }
     }
 }
