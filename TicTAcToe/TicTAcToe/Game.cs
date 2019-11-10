@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices;
+using System.Text;
 
 namespace TicTacToe
 {
@@ -20,26 +21,31 @@ namespace TicTacToe
 
         public int Move(char player)
         {
-            // find winning move
-            for (int i = 0; i < 9; i++)
+             // find winning move
+            var defaultMove = -1;
+            for (var i = 0; i < 9; i++)
             {
                 if (board[i] == '-')
                 {
+                    if(defaultMove ==-1) defaultMove = i;
                     var game = Play(i, player);
                     if (game.Winner() == player)
                         return i;
                 }
             }
 
-            // find default move
-            for (int i = 0; i < 9; i++)
-            {
-                if (board[i] == '-')
-                    return i;
-            }
+            return defaultMove;
 
-            return -1;
+            //// find default move
+            //for (var i = 0; i < 9; i++)
+            //{
+            //    if (board[i] == '-')
+            //        return i;
+            //}
+
+            //return -1;
         }
+
 
         private Game Play(int i, char player)
         {
