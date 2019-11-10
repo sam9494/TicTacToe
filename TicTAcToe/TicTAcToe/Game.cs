@@ -25,7 +25,7 @@ namespace TicTacToe
                 if (_board[i] != '-') continue;
 
                 if (defaultMove == -1) defaultMove = i;
-                var nextMoveSimulation = new NextMoveSimulation(_board, i, player);
+                var nextMoveSimulation = new GameNextMoveSimulator(_board, i, player);
                 if (nextMoveSimulation.GetWinner() == player)
                     return i;
             }
@@ -39,11 +39,11 @@ namespace TicTacToe
         char GetWinner();
     }
 
-    public class NextMoveSimulation : IGame
+    public class GameNextMoveSimulator : IGame
     {
         private readonly StringBuilder _simulateBoard;
 
-        public NextMoveSimulation(StringBuilder board, int position, char player)
+        public GameNextMoveSimulator(StringBuilder board, int position, char player)
         {
             _simulateBoard = new StringBuilder(board.ToString()) {[position] = player};
         }

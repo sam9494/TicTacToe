@@ -51,7 +51,7 @@ namespace TicTacToe
         public void TestWinByNextMoveRowConditions()
         {
             var board = new StringBuilder("-XX------");
-            var nextMoveSimulation = new NextMoveSimulation(board,0,'X');
+            var nextMoveSimulation = new GameNextMoveSimulator(board,0,'X');
             var winner = nextMoveSimulation.GetWinner();
             Assert.AreEqual('X', winner);
         }
