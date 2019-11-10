@@ -47,13 +47,13 @@ namespace TicTacToe
 
             //game = new Game("YYY------");
             //Assert.AreEqual('Y', game.Winner());
-            GameWinnerShouldBe("---XXX---", 'X');
-            GameWinnerShouldBe("------OOO", 'O');
-            GameWinnerShouldBe("YYY------", 'Y');
+            WhenThisBoardGameWinnerShouldBe("---XXX---", 'X');
+            WhenThisBoardGameWinnerShouldBe("------OOO", 'O');
+            WhenThisBoardGameWinnerShouldBe("YYY------", 'Y');
 
         }
 
-        private void GameWinnerShouldBe(string board, char expectWinner)
+        private void WhenThisBoardGameWinnerShouldBe(string board, char expectWinner)
         {
             var game = new Game(board);
             var actual = game.Winner();
