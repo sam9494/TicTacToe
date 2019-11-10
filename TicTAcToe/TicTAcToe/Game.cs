@@ -3,13 +3,18 @@ using System.Text;
 
 namespace TicTacToe
 {
-    public class Game
+    public class Game : IGame
     {
-        public StringBuilder Board;
+        private readonly StringBuilder _board;
 
         public Game(string s)
         {
-            Board = new StringBuilder(s);
+            _board = new StringBuilder(s);
+        }
+
+        public char GetWinner()
+        {
+            return _board.Winner();
         }
 
         public int Move(char player)
@@ -17,36 +22,35 @@ namespace TicTacToe
             var defaultMove = -1;
             for (var i = 0; i < 9; i++)
             {
-                if (Board[i] != '-') continue;
+                if (_board[i] != '-') continue;
 
                 if (defaultMove == -1) defaultMove = i;
-                var nextMoveSimulation = new NextMoveSimulation(Board, i, player);
-                var simulateBoard = nextMoveSimulation.GetBoard();
-                if (simulateBoard.Winner() == player)
+                var nextMoveSimulation = new NextMoveSimulation(_board, i, player);
+                if (nextMoveSimulation.GetWinner() == player)
                     return i;
             }
 
             return defaultMove;
         }
-
-        public StringBuilder GetBoard()
-        {
-            return Board;
-        }
     }
 
-    public class NextMoveSimulation
+    public interface IGame
     {
-        public StringBuilder SimulateBoard;
+        char GetWinner();
+    }
+
+    public class NextMoveSimulation : IGame
+    {
+        private readonly StringBuilder _simulateBoard;
 
         public NextMoveSimulation(StringBuilder board, int position, char player)
         {
-            SimulateBoard = new StringBuilder(board.ToString()) {[position] = player};
+            _simulateBoard = new StringBuilder(board.ToString()) {[position] = player};
         }
 
-        public StringBuilder GetBoard()
+        public char GetWinner()
         {
-            return SimulateBoard;
+            return _simulateBoard.Winner();
         }
     }
 

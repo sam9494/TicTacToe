@@ -52,16 +52,14 @@ namespace TicTacToe
         {
             var board = new StringBuilder("-XX------");
             var nextMoveSimulation = new NextMoveSimulation(board,0,'X');
-            var nextMoveBoard = nextMoveSimulation.GetBoard();
-            var winner = nextMoveBoard.Winner();
+            var winner = nextMoveSimulation.GetWinner();
             Assert.AreEqual('X', winner);
         }
 
         private void GameWinnerShouldBe(string boardString, char expectWinner)
         {
             var game = new Game(boardString);
-            var board = game.GetBoard();
-            var actual = board.Winner();
+            var actual = game.GetWinner();
             Assert.AreEqual(expectWinner,actual);
         }
     }
