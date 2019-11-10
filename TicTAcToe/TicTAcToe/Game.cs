@@ -48,17 +48,29 @@ namespace TicTacToe
 
         public char Winner()
         {
-            if (board[0] != '-' && board[0] == board[1]
-                                && board[1] == board[2])
-                return board[0];
-            if (board[3] != '-' && board[3] == board[4]
-                                && board[4] == board[5])
-                return board[3];
-            if (board[6] != '-' && board[6] == board[7]
-                                && board[7] == board[8])
-                return board[6];
-
+            for (var i = 0; i < 9; i += 3)
+            {
+                if (board[i] != '-' && board[i] == board[i + 1] && board[i] == board[i + 2])
+                {
+                    return board[i];
+                }
+            }
             return '-';
+
+
+            //if (board[0] != '-' && board[0] == board[1]
+            //                && board[1] == board[2])
+            //    return board[0];
+            //if (board[3] != '-' && board[3] == board[4]
+            //                    && board[4] == board[5])
+            //    return board[3];
+            //if (board[6] != '-' && board[6] == board[7]
+            //                    && board[7] == board[8])
+            //    return board[6];
+            //return '-';
+
+
+
         }
     }
 }
