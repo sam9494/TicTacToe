@@ -41,7 +41,7 @@ namespace TicTacToe
             return -1;
         }
 
-        public Game Play(int i, char player)
+        private Game Play(int i, char player)
         {
             return new Game(board, i, player);
         }
