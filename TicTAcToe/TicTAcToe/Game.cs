@@ -19,13 +19,13 @@ namespace TicTacToe
             {
                 if (Board[i] != '-') continue;
 
-                if(defaultMove ==-1) defaultMove = i;
+                if (defaultMove == -1) defaultMove = i;
                 var nextMoveSimulation = new NextMoveSimulation(Board, i, player);
                 var simulateBoard = nextMoveSimulation.GetBoard();
                 if (simulateBoard.Winner() == player)
                     return i;
             }
-            
+
             return defaultMove;
         }
 
@@ -59,12 +59,14 @@ namespace TicTacToe
                 if (WinOrNot(position, board))
                     return board[position];
             }
+
             return '-';
         }
 
         private static bool WinOrNot(int position, StringBuilder board)
         {
-            return board[position] != '-' && board[position] == board[position + 1] && board[position] == board[position + 2];
+            return board[position] != '-' && board[position] == board[position + 1] &&
+                   board[position] == board[position + 2];
         }
     }
 }

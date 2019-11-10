@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Text;
+using NUnit.Framework;
 using TicTacToe;
 
 namespace TicTacToe
@@ -43,6 +44,17 @@ namespace TicTacToe
             GameWinnerShouldBe("------OOO", 'O');
             GameWinnerShouldBe("YYY------", 'Y');
 
+        }
+
+
+        [Test]
+        public void TestWinByNextMoveRowConditions()
+        {
+            var board = new StringBuilder("-XX------");
+            var nextMoveSimulation = new NextMoveSimulation(board,0,'X');
+            var nextMoveBoard = nextMoveSimulation.GetBoard();
+            var winner = nextMoveBoard.Winner();
+            Assert.AreEqual('X', winner);
         }
 
         private void GameWinnerShouldBe(string boardString, char expectWinner)
